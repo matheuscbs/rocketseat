@@ -1,0 +1,68 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "title": "Freelance de website",
+      "type": "Income",
+      "category": "Venda",
+      "price": 6000,
+      "createdAt": "2022-07-29T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Aluguel",
+      "type": "Outcome",
+      "category": "Casa",
+      "price": 1100,
+      "createdAt": "2022-07-29T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Freelance de website",
+      "type": "Income",
+      "category": "Venda",
+      "price": 6000,
+      "createdAt": "2022-07-29T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "Aluguel",
+      "type": "Outcome",
+      "category": "Casa",
+      "price": 1100,
+      "createdAt": "2022-07-29T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "title": "Freelance de website",
+      "type": "Income",
+      "category": "Venda",
+      "price": 6000,
+      "createdAt": "2022-07-29T00:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Aluguel",
+      "type": "Outcome",
+      "category": "Casa",
+      "price": 1100,
+      "createdAt": "2022-07-29T00:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "title": "Freelance de website",
+      "type": "Income",
+      "category": "Venda",
+      "price": 6000,
+      "createdAt": "2022-07-30T00:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "title": "Aluguel",
+      "type": "Outcome",
+      "category": "Casa",
+      "price": 1100,
+      "createdAt": "2022-07-30T00:00:00.000Z"
+    }
+  ]
+}
