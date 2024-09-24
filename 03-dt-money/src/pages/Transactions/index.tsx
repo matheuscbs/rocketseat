@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
-import { TransactionContext } from "../../contexts/transactionsContexts";
+import { TransactionContext } from "../../contexts/TransactionsContexts";
 import { SearchForm } from "./components/SearchForm";
 import {
   PriceHighLight,
