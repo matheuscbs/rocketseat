@@ -11,7 +11,7 @@ interface Transactions {
 }
 
 interface CreateTransactionInput {
-  description: string;
+  title: string;
   price: number;
   category: string;
   type: "income" | "outcome";
@@ -44,9 +44,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   }
 
   async function createTransaction(data: CreateTransactionInput) {
-    const { description, category, price, type } = data;
+    const { title, category, price, type } = data;
     const response = await api.post("transactions", {
-      description,
+      title,
       category,
       price,
       type,

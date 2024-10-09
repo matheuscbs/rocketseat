@@ -14,7 +14,7 @@ import {
 } from "./styles";
 
 const newTransactionFormSchema = z.object({
-  description: z.string(),
+  title: z.string(),
   price: z.number(),
   category: z.string(),
   type: z.enum(["income", "outcome"]),
@@ -38,10 +38,10 @@ export function NewTransactionModal() {
   });
 
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    const { description, price, category, type } = data;
+    const { title, price, category, type } = data;
 
     await createTransaction({
-      description,
+      title,
       price,
       category,
       type,
@@ -62,7 +62,7 @@ export function NewTransactionModal() {
             type="text"
             placeholder="Descrição"
             required
-            {...register("description")}
+            {...register("title")}
           />
           <input
             type="number"
