@@ -38,11 +38,21 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       params: {
         _sort: "createdAt",
         _order: "desc",
-        q: query,
       },
     });
 
-    setTransactions(response.data);
+    let filteredTransactions = response.data;
+
+    if (query) {
+      const lowerCaseQuery = query.toLowerCase();
+      filteredTransactions = filteredTransactions.filter(
+        (transaction: Transaction) =>
+          transaction.description.toLowerCase().includes(lowerCaseQuery) ||
+          transaction.category.toLowerCase().includes(lowerCaseQuery)
+      );
+    }
+
+    setTransactions(filteredTransactions);
   }, []);
 
   const createTransaction = useCallback(
