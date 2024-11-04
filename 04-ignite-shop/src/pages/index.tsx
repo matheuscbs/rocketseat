@@ -1,13 +1,42 @@
 import "keen-slider/keen-slider.min.css";
 
+import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
-import camiseta1 from "../assets/shirts/1.png";
-import camiseta2 from "../assets/shirts/2.png";
-import camiseta3 from "../assets/shirts/3.png";
+import sharp from "sharp";
+import Stripe from "stripe";
+import { stripe } from "../lib/stripe";
 import { HomeContainer, Product } from "../styles/pages/home";
 
-export default function Home() {
+interface HomeProps {
+  products: {
+    id: string;
+    name: string;
+    imageUrl: string | null;
+    price: number;
+    blurDataURL: string | null;
+  }[];
+}
+
+async function getBlurDataURL(imageUrl: string): Promise<string | null> {
+  try {
+    const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
+    const imageBuffer = Buffer.from(response.data, "binary");
+
+    const blurredImageBuffer = await sharp(imageBuffer)
+      .resize(16, 16)
+      .blur()
+      .toBuffer();
+
+    return `data:image/jpeg;base64,${blurredImageBuffer.toString("base64")}`;
+  } catch (error) {
+    console.error(`Erro ao gerar blurDataURL para ${imageUrl}:`, error);
+    return null;
+  }
+}
+
+export default function Home({ products }: HomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -17,38 +46,51 @@ export default function Home() {
 
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
-      <Product className="keen-slider__slide">
-        <Image src={camiseta1} alt="" width={520} height={480} />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-      <Product className="keen-slider__slide">
-        <Image src={camiseta2} alt="" width={520} height={480} />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-      <Product className="keen-slider__slide">
-        <Image src={camiseta3} alt="" width={520} height={480} />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-      <Product className="keen-slider__slide">
-        <Image src={camiseta3} alt="" width={520} height={480} />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
+      {products.map((product) => (
+        <Product key={product.id} className="keen-slider__slide">
+          <Image
+            src={product.imageUrl ?? ""}
+            alt={product.name}
+            width={520}
+            height={480}
+            placeholder={product.blurDataURL ? "blur" : "empty"}
+            blurDataURL={product.blurDataURL || undefined}
+          />
+          <footer>
+            <strong>{product.name}</strong>
+            <span>R$ {product.price.toFixed(2)}</span>
+          </footer>
+        </Product>
+      ))}
     </HomeContainer>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await stripe.products.list({
+    expand: ["data.default_price"],
+  });
+
+  const products = await Promise.all(
+    response.data.map(async (product) => {
+      const price = product.default_price as Stripe.Price;
+      const imageUrl = product.images[0] || null;
+
+      const blurDataURL = imageUrl ? await getBlurDataURL(imageUrl) : null;
+
+      return {
+        id: product.id,
+        name: product.name,
+        imageUrl,
+        price: (price.unit_amount ?? 0) / 100,
+        blurDataURL,
+      };
+    })
+  );
+
+  return {
+    props: {
+      products,
+    },
+  };
+};
