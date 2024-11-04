@@ -58,7 +58,7 @@ export default function Home({ products }: HomeProps) {
           />
           <footer>
             <strong>{product.name}</strong>
-            <span>R$ {product.price.toFixed(2)}</span>
+            <span>{product.price}</span>
           </footer>
         </Product>
       ))}
