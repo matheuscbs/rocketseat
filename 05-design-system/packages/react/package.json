@@ -4,15 +4,18 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "lint": "eslint src/**/*.ts* --fix"
   },
   "keywords": [],
   "author": "matheuscbs",
   "license": "MIT",
   "description": "",
   "devDependencies": {
+    "@matheuscbs/eslint-config": "*",
     "@matheuscbs/ts-config": "*",
     "@matheuscbs/tokens": "*",
     "tsup": "^8.3.5",
