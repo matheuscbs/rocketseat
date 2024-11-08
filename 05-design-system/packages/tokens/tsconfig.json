@@ -1,5 +1,5 @@
 {
-  "extends": "../ts-config/base.json",
+  "extends": "@matheuscbs/ts-config/base.json",
   "include": [
     "src"
   ]

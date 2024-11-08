@@ -6,8 +6,8 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.tsx --format esm,cjs --dts --external react --watch",
     "lint": "eslint src/**/*.ts* --fix"
   },
   "keywords": [],
@@ -16,8 +16,12 @@
   "description": "",
   "devDependencies": {
     "@matheuscbs/eslint-config": "*",
-    "@matheuscbs/ts-config": "*",
     "@matheuscbs/tokens": "*",
+    "@matheuscbs/ts-config": "*",
+    "@types/estree": "^1.0.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "react": "^18.3.1",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3"
   }
