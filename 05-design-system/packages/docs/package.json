@@ -7,9 +7,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@matheuscbs/tokens": "*",
-    "@matheuscbs/react": "*",
     "@matheuscbs/eslint-config": "*",
+    "@matheuscbs/react": "*",
+    "@matheuscbs/tokens": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -18,11 +18,14 @@
     "@eslint/js": "^9.13.0",
     "@storybook/addon-essentials": "^8.4.2",
     "@storybook/addon-interactions": "^8.4.2",
+    "@storybook/addon-links": "^8.4.2",
     "@storybook/addon-onboarding": "^8.4.2",
+    "@storybook/addon-toolbars": "^8.4.2",
     "@storybook/blocks": "^8.4.2",
     "@storybook/react": "^8.4.2",
     "@storybook/react-vite": "^8.4.2",
     "@storybook/test": "^8.4.2",
+    "@storybook/theming": "^8.4.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
