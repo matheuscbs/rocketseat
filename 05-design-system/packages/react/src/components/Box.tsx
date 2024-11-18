@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps } from "@stitches/react";
 import { styled } from "../styles";
 
 export const Box = styled("div", {
