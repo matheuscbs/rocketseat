@@ -1,4 +1,4 @@
-import { Box, BoxProps } from "@matheuscbs/react";
+import { Box, BoxProps, Text } from "@matheuscbs/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
@@ -8,7 +8,7 @@ export default {
   args: {
     children: (
       <>
-        <span>Testando o elemento Box</span>
+        <Text>Testando o elemento Box</Text>
       </>
     ),
   },
