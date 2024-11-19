@@ -13,6 +13,7 @@ const preview = {
     docs: {
       theme: themes.dark,
     },
+    viewMode: "docs",
   },
 };
 
