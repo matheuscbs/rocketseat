@@ -2,7 +2,7 @@ import { Box, Text, TextArea, TextAreaProps } from "@matheuscbs/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
-  title: "Typography/Text Area",
+  title: "Form/Text Area",
   component: TextArea,
   args: {},
   decorators: [
