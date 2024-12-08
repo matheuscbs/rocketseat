@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           # Configuração de cache dos pacotes npm depende da config do Turbo Repo
           # cache: "npm"
           # cache_dependency-path: "**/package-lock.json"
