@@ -20,6 +20,10 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+      # Config pela vercel para cachear a aplicação
+      # env:
+      # TURBO_TOKEN: TOKEN CONFIGURADO
+      # TURBO_TEAM: slug do team configurado na vercel
 
       - name: Deploy storybook
         working-directory: ./packages/docs
